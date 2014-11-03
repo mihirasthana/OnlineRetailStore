@@ -1,0 +1,18 @@
+form {
+             height:300px;
+             width:300px;
+             position: absolute;
+             left: 50%;
+             top: 50%;
+             margin: -200px 0 0 -200px;
+     }
+  
+ #SignUp{
+ 			 height:800px;
+             width:800px;
+             position: absolute;
+             left: 50%;
+             top: 50%;
+             margin: -200px 0 0 -200px;
+ 			
+ 		}

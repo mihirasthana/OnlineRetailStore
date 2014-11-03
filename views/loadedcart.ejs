@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>My Cart</title>
+<script type="text/javascript">
+var sum=0;
+function total(y,sid,chng)
+{
+document.getElementById('calc').disabled=false;
+var x = document.getElementById(sid).value * y;
+var z = "ttl"+chng;
+var y= "hid"+chng;
+document.getElementById(z).innerHTML = x;
+document.getElementById(y).value = x;
+
+}
+function gettotal(x)
+{
+
+	var tot=0,cols="hid";
+	var temp="";
+	var t=0;
+	for(var i=0;i<x;i++)
+	{
+  	    temp=cols+i;      
+  	    t=parseInt(t)+parseInt(document.getElementById(temp).value);
+  	    alert(document.getElementById(temp).value);
+	}
+	alert(t);
+	document.getElementById("grand").innerHTML = "Grand Total:"+t;
+	document.getElementById("finaltotal").value = t;
+	alert("finaltotal:"+document.getElementById("finaltotal").value);
+	document.getElementById('pay').disabled=false;
+
+}
+function initializepage()
+{
+document.getElementById('pay').disabled=true;
+document.getElementById('calc').disabled=true;
+}
+</script>
+</head>
+<body onload="initializepage()" onunload="initializepage()">
+<div><img src="images/logo.png" alt="Amazon Logo"></div>
+<h2 align="center">Welcome to Your Cart</h2>
+<div align="right">
+<a href="/logout">Log Out</a>
+</div>
+<form method="post" action="/checkout">
+<div>
+<% if(results.length>0)
+{
+%>
+ <table border = '1' align = "center" style="float:center;">
+  <tr>
+    <th>Product</th>
+    <th>Description</th>
+	<th>Price</th>
+    <th>Quantity</th>
+    <th>Total</th>
+  </tr>
+ <%
+ for(var i=0; i<results.length; i++) 
+ {
+ %>
+ <tr>
+ <td align="center">
+ <div align="center">
+ <b><%= results[i].pname %></b><br/>
+ <a href = "<%= results[i].pname %>"> <img src= <%= results[i].img %> width="200" height="200" ></a>
+ <a href= "/removeitem/<%= results[i].pname %>">remove from cart</a>
+ </div>
+ </td>
+ <td>
+ <%= results[i].description %>
+ </td>
+ <td id="rate" align="center">
+ <b><%= results[i].price %></b>
+ </td>
+ <td align="center">
+
+ <%
+  if(results[i].quantity == 0)
+  {
+ %>
+ <b>Out of Stock</b>
+ <%
+  }
+  else
+  {
+ %>
+  <select id="qty<%=i%>" name="qty" onchange="total(<%=results[i].price%>,this.id,<%=i%>)">
+ <%
+  for(var j=0;j<=results[i].quantity;j++)
+ 	{
+  %>
+  <option value='<% if(j==0){%> <%}else{%><%=j%><%}%>' <%if(j==0){%>selected<%}%>><%=j%></option>
+<%
+}
+}
+%>
+</select>
+<input type="hidden" id="hid<%=i%>" value="0">
+ </td> 
+ <td id="ttl<%=i%>">
+ </td> 
+ </tr>
+   <%
+ }
+ %>
+  <tr>
+  
+  <td colspan="5" align="right"> 
+  <p id="grand"><b>Grand Total:</b></p>
+  <input type="hidden" name="finaltot" id="finaltotal" value="">
+  <input type="hidden" name="nocartitems" id="cartitems" value="<%=results.length%>">
+  <input type="button" id="calc" name="gettot" value="Calculate Total" onclick="gettotal(<%=results.length%>)"> 
+  <br/>
+ <input type="submit" id="pay"  value="Proceed To Pay" style="height:30px; width:100%">
+  </td>
+ </tr>
+ </table>
+  <%
+ }
+ else
+ {
+ %>
+ <h2>Your Shopping Cart is Empty</h2>  
+ <%
+ }
+ %>
+</div>
+</form>
+</body>
+<html>

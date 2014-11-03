@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Checkout and Shipping</title>
+</head>
+<body align="center">
+<div><img src="images/logo.png" alt="Amazon Logo"></div>
+<div align="center">
+<h2>Checkout and Shipping</h2>
+<table border="1" align="right">
+<tr>
+<td>
+<a href="/logout">Log Out</a>
+</td>
+</tr>
+</table>
+</div>
+<div>
+<h4>Please Enter the below details and confirm your order</h4><br/>
+<form method="post" action="/ordersummary">
+<fieldset style="width:30%"><legend>Shipping Details</h3></legend>
+<table border="0">
+<tr>
+<td>Street Address:</td><td> <input type="text" required ="" name="street" size="100"></td>
+</tr>
+<tr>
+<td>Apt No/House No:</td><td> <input type="text" required ="" name="apt" size="10"></td>
+</tr>
+<tr>
+<td>ZipCode</td><td> <input type="number" required ="" name="zip" size="6"></td>
+</tr>
+<tr>
+<td>Phone No:</td><td> <input type="number" required ="" name="phone" size="10"></td>
+</tr>
+</table>
+</fieldset>
+<fieldset style="width:30%"><legend><h3>Credit Card Details</h3></legend>
+<table border="0">
+<tr>
+<td align="right">Total:<%=total%></td>
+</tr>
+<tr>
+<td>Credit Card Number</td><td> <input type="number" required ="" name="ccn"></td>
+</tr>
+<tr>
+<td>3 digit cvv number:</td><td> <input type="number" required ="" name="cvv"></td>
+</tr>
+<tr>
+<td>Validity:</td><td><input type="number" name="month" placeholder="mm" min="1" max="12" size="2">
+<input type="number" name="year" placeholder="yy"  min="1" max="12" size="2">
+</td>
+</tr>
+<tr>
+<td>
+<input type="hidden" name="numitems" id="numitem" value="<%=totalitems%>">
+<input type="submit" name="order" value="Confirm Order"></td>
+</tr>
+</table>
+</fieldset>
+</form>
+</div>
+</body>
+<html>

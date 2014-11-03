@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Product Details</title>
+</head>
+<body>
+<table style="float:left;">
+ <tr>
+ <td align="center">
+ <b><%= results[0].pname %></b>
+ </td>
+ </tr>
+ <tr>
+ <td align="center">
+<img src= <%= results[0].img %> width="200" height="200" >
+ </td>
+ </tr>
+ <tr>
+ <td>
+ <%= results[0].description %>
+ </td>
+ </tr>
+ <tr>
+ <td align="center">
+<b>Price:$<%= results[0].price %>&nbsp;Quantity:<%= results[0].quantity %>
+  <form method="post" action="/productspage" >
+ <input type="hidden" name="cpname" value="<%= results[0].pname %>">
+ <input type="submit" value="Add to Cart">
+ </form>
+ </td>
+ </tr>
+ </table>
+</body>
+</html>

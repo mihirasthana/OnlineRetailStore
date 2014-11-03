@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>Welcome to Amazon Store</title>
+</head>
+<body>
+<div><img src="images/logo.png" alt="Amazon Logo"></div>
+<div align="right">
+<table border="1" align="right">
+<tr>
+<td>
+<a href="/mycart">My Cart</a>
+</td>
+<td>
+<a href="/logout">Log Out</a>
+</td>
+</tr>
+</table>
+</div>
+<title>Welcome To AmazonStore</title>
+<h2>Welcome to AmazonStore</h2>
+<div>
+<div>Shop By Department</div>
+<form name="dept" method="post" action="/category">
+<select id="myDep" name="myDept">
+  <option>Electronics</option>
+  <option>Home and furniture</option>
+  <option>Fashion</option>
+  <option>Books</option>
+</select>
+<input type="submit" name="sortdept" value="Sort by Department">
+</form>
+ <div>
+ <h3>Product Listings</h3></br>
+ <div>
+
+ <%
+ for(var i=0; i<results.length; i++) 
+ {
+ %>
+ <table style="float:left;">
+ <tr>
+ <td align="center">
+ <b><%= results[i].pname %></b>
+ </td>
+ </tr>
+ <tr>
+ <td align="center">
+ <a href = "/productdetail/<%= results[i].pname %>"> <img src= <%= results[i].img %> width="200" height="200" ></a>
+ </td>
+ </tr>
+ <tr>
+ <td>
+ <%= results[i].description %>
+ </td>
+ </tr>
+ <tr>
+ <td align="center">
+ <a href= "/productdetail/<%= results[i].pname %>">Click For More Details..</a>
+ </td>
+ </tr>
+ <tr>
+ <td align="center">
+<b>Price:$<%= results[i].price %>&nbsp;
+<b>Quantity:<%=results[i].quantity%></b>
+
+  <form method="post" action="/productspage" >
+ <input type="hidden" name="cpname" value="<%= results[i].pname %>">
+ <input type="submit" value="Add to Cart">
+ </form>
+ </td>
+ </tr>
+ </table>
+<%
+ }
+ %>
+</div>
+ </div>
+</div>
+</body>
+<html>
